@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Reset and Global Styles */
 * {
   padding: 0;
   margin: 0;
@@ -13,28 +14,27 @@ body {
   background-color: rgb(0, 0, 0);
 }
 
+/* Moving Background Animation */
+@keyframes moveBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 section {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
-}
-section {
-  background-image: url("🌞🌙.jpg");
+  background-image: url("images/bg11.jpg");
+  background-size: 200% auto;
   background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
+  animation: moveBackground 10s infinite linear;
 }
-#hero .section-box::before {
-  content: '';
-  position: relative;
-  top: 1;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
+
+/* Glassmorphism Effect */
 .section-box {
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
@@ -44,119 +44,205 @@ section {
   height: 95vh;
   width: 85%;
   overflow: hidden;
-}
-.content-wrap {
-  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Header Fixes */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 90%;
+  padding: 20px 40px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.5); /* Adds slight transparency */
+  border-radius: 20px;
 }
+/* Typing Animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.typing-container {
+  font-family: 'Courier New', monospace;
+  font-size: 2em;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  border-right: 3px solid white; /* Cursor effect */
+  width: 0; /* Start hidden */
+  animation: typing 7s steps(30, end) forwards, blink 0.8s infinite;
+}
+/* Logo Fix */
 .header-logo {
   font-size: 32px;
-  font-weight: 600;
+  font-weight: bold;
+  text-transform: uppercase;
   letter-spacing: 1px;
-  text-transform: uppercase and lowercase;
 }
+
 .header-logo span {
-  color: #ff000086;
+  color: rgb(255, 0, 0); /* Stronger red */
 }
+
+/* Navigation Fixes */
 nav {
   display: flex;
-  align-items: center;
-  gap: 40px;
-  z-index: 2;
+  gap: 30px;
 }
+
 .nav-items {
   font-size: 18px;
   font-weight: 500;
-  letter-spacing: 1px;
   text-transform: capitalize;
   cursor: pointer;
-  transition: 0.3s;
+  padding: 5px 10px;
   position: relative;
-  display: flex;
-  justify-content: center;
-}
-nav .active {
+  transition: color 0.3s;
+  text-decoration: none;
   color: white;
 }
+
+.nav-items:hover {
+  color: rgb(200, 200, 200);
+}
+/* Styling for Search Bar */
+#nameSearch {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 16px;
+  width: 200px;
+}
+
+#nameSearch::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+/* Underline Animation */
 .nav-items::after {
   content: '';
   position: absolute;
-  bottom: -10px;
-  width: 100%;
+  bottom: -5px;
+  left: 50%;
+  width: 0%;
   height: 2px;
   background-color: white;
-  box-shadow: 0 0 5px white;
-  transform: scale(0);
-  transform-origin: left;
-  transition: 0.3s;
-}
-.nav-items:hover::after {
-  transform: scale(1);
-}
-.active:hover::after {
-  background-color: #ff000067;
-  box-shadow: 0 0 5px #ff00007d;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
-.hero-content h3 {
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 50px;
+.nav-items:hover::after {
+  width: 100%;
+  left: 0;
 }
-.hero-content h1 {
-  font-size: 6rem;
-  font-weight: 800;
-  letter-spacing: 30px;
-  text-transform: uppercase;
-  margin-top: -10px;
+
+/* Fix for Active Link */
+.active {
+  color: rgb(255, 0, 0);
 }
-.hero-content {
-  padding-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.active:hover::after {
+  background-color: rgb(255, 0, 0);
 }
-.hero-img {
-  position: fixed; /* Keeps it fixed at the bottom */
-  left: 50%;
-  bottom: 5%; /* Adjust as needed */
-  transform: translateX(-50%); /* Center it horizontally */
-  width: 600px; /* Adjust width */
-  height: 400px; /* Adjust height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1); /* Light transparent background */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  border-radius: 20px;
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .nav-items {
+    font-size: 16px;
+  }
+}
+/* Sidebar Styling */
+.sidebar {
+  width: 250px; /* Adjust width as needed */
+  height: 100vh; /* Full height */
+  position: fixed; /* Fix it to the left */
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8); /* Dark background */
+  z-index: 1000; /* Higher than other elements */
+  overflow-y: auto; /* Enable scrolling */
   padding: 20px;
-  animation: slideUp 1s ease-in-out;
 }
-.hero-btn {
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  border-radius: 50px;
-  height: 50px;
-  width: 300px;
-  margin-top: 20px;
-  z-index: 2;
-  cursor: pointer;
-  transition: 0.3s;
+
+/* Main Content */
+.main-content {
+  margin-left: 260px; /* Push content to the right */
+  transition: margin-left 0.3s ease-in-out;
+  padding: 20px;
 }
-.hero-btn:hover {
-  background-color: white;
-  color: black;
+
+/* Ensure Content Resizes on Smaller Screens */
+@media screen and (max-width: 768px) {
+  .sidebar {
+      width: 200px; /* Reduce sidebar width */
+  }
+
+  .main-content {
+      margin-left: 210px;
+  }
 }
+.vertical-banner-container {
+  width: 80px;  /* Reduced width for a slim banner */
+  height: 100vh; /* Full height of the webpage */
+  overflow: hidden;
+  background-color: rgba(255, 0, 0, 0.6); /* Semi-transparent orange */
+  position: fixed; /* Fixed position for full-page coverage */
+  right: 0; /* Stick to the right side */
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Banner Content */
+.vertical-banner {
+  display: flex;
+  flex-direction: column; /* Stack text vertically */
+  align-items: center;
+  white-space: nowrap;
+  animation: scrollBanner 20s linear infinite;
+}
+
+/* Banner Text */
+.vertical-banner span {
+  font-size: 14px; /* Adjusted for better fit */
+    color: white;
+    font-weight: bold;
+    margin: 15px 0; /* Space between items */
+    text-align: center;
+    writing-mode: vertical-rl; /* Rotates text vertically */
+}
+@keyframes scrollBanner {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+
 /* About Section */
 .content-grid {
   display: grid;
@@ -165,7 +251,7 @@ nav .active {
   padding: 0 50px;
 }
 .about-img {
-  width: 90%;
+  width: 70%;
   animation: zoomIn 1.4s ease-in-out forwards;
   animation-delay: 0.2s;
   opacity: 0;
@@ -232,137 +318,326 @@ nav .active {
 .action-btn:hover {
   background-color: #00d11f;
 }
-/* Full section styling */
-.sliding-section {
+
+/* Style for the service title */
+.service-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  color: orangered;
+  position: relative;
+}
+
+/* Optional: Add a decorative line below the title */
+.service-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: orangered;
+  margin: 10px auto 0;
+}
+
+/* Optional: Add a gradient or shadow */
+.service-title {
+  background: linear-gradient(90deg, white, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Responsive font size */
+@media (max-width: 768px) {
+  .service-title {
+    font-size: 2rem;
+  }
+}
+
+/* Optional: Add animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-title {
+  animation: fadeIn 1s ease-out;
+}
+.card-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: center; /* Center cards horizontally */
+  align-items: center; /* Center cards vertically */
+  gap: 20px; /* Space between cards */
+  padding: 20px; /* Add padding around the container */
+}
+
+/* Individual card styling */
+  .card {
+    width: 200px;
+    height: 250px;
+    background-color: rgba(255, 255, 0, 0.23);
+    border: 1px solid  black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: black; /* Ensure text color is visible */
+    overflow: hidden; /* Prevent text from overflowing */
+    padding: 10px; /* Add padding to prevent text from touching edges */
+  }
+
+/* Hover effect for cards */
+.card:hover {
+  transform: scale(1.05); /* Slightly increase size on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Fan out animation for each card */
+.card-container:hover .card:nth-child(1) { transform: rotate(-15deg) translateY(-100px); }
+.card-container:hover .card:nth-child(2) { transform: rotate(-10deg) translateY(-90px); }
+.card-container:hover .card:nth-child(3) { transform: rotate(-5deg) translateY(-80px); }
+.card-container:hover .card:nth-child(4) { transform: rotate(0deg) translateY(-70px); }
+.card-container:hover .card:nth-child(5) { transform: rotate(5deg) translateY(-80px); }
+.card-container:hover .card:nth-child(6) { transform: rotate(10deg) translateY(-90px); }
+.card-container:hover .card:nth-child(7) { transform: rotate(15deg) translateY(-100px); }
+.card-container:hover .card:nth-child(8) { transform: rotate(20deg) translateY(-110px); }
+.card-container:hover .card:nth-child(9) { transform: rotate(25deg) translateY(-120px); }
+.card-container:hover .card:nth-child(10) { transform: rotate(30deg) translateY(-130px); }
+.card-container:hover .card:nth-child(11) { transform: rotate(35deg) translateY(-140px); }
+/* Newsletter Container */
+.newsletter-container {
   position: absolute;
-  width: 100%;
+  top: 45%; /* Adjusted position */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8); /* Improved readability */
+  padding: 25px;
+  border-radius: 10px;
+  z-index: 1000;
+  max-width: 420px; /* Ensures a good width */
+  width: 90%;
+}
+
+/* Headings */
+h1 {
+  font-size: 42px;
+  font-weight: bold;
+  color: white;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Dropdown Styling */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.dropbtn {
+  background-color: white;
+  color: black;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 5px;
   overflow: hidden;
 }
 
-/* Ensure the body covers the full screen */
-body {
-  margin: 0;
-  padding: 0;
-  background: #1a1a1a;
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
-/* Split-screen animation */
-.sliding-section::before,
-.sliding-section::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  z-index: 1;
-  animation-fill-mode: forwards;
+.dropdown-content a:hover {
+  background-color: #ddd;
 }
 
-.sliding-section::before {
-  left: 0;
-  transform: translateX(-100%);
-  animation: slideLeft 1.5s ease-in-out forwards;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
-.sliding-section::after {
-  left: 50%;
-  transform: translateX(100%);
-  animation: slideRight 1.5s ease-in-out forwards;
+.dropdown:hover .dropbtn {
+  background-color: #ddd;
 }
 
-/* Sliding Animations */
-@keyframes slideLeft {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(0); }
-}
-
-@keyframes slideRight {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(0); }
-}
-
-/* Container */
-.container {
-  position: relative;
-  z-index: 2;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  text-align: center;
-  backdrop-filter: blur(20px);
-  opacity: 0;
-  animation: fadeIn 2s ease-in-out 1.5s forwards;
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(50px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Section Titles */
-.section-sub {
-  color: #c73c3c;
-  font-size: 50px;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.section-title {
-  color: rgb(255, 255, 255);
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Grid for Buttons */
-.grid {
+/* Subscribe Box */
+.subscribe-box {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-/* Button Styling */
-.button {
-  background: #7A5C43;
-  color: white;
-  padding: 12px 20px;
-  font-size: 18px;
-  border-radius: 25px;
-  cursor: pointer;
+/* Email Input Field */
+.subscribe-box input {
+  padding: 12px;
+  width: 250px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  outline: none;
+}
+
+/* Subscribe Button */
+.subscribe-box button {
+  background-color: white;
+  color: black;
+  font-size: 16px;
   font-weight: bold;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.subscribe-box button:hover {
+  background-color: #ddd;
+}
+
+/* Grid Container */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch; /* Ensures all boxes have equal height */
+  margin: 20px auto;
+  max-width: 1000px; /* Prevents excessive stretching */
+}
+
+/* Box Styling */
+.box {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  flex: 1 1 200px;
-  opacity: 0;
-  animation: fadeIn 2s ease-in-out 2s forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Align content in the center */
+  align-items: center;
+  min-height: 150px; /* Ensures equal height */
 }
 
-.button:hover {
-  background: #5A3E2B;
-  transform: translateY(-3px);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+/* Ensure all headings have the same height */
+.box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-/* Click Effect */
-.button:active {
-  transform: scale(0.95);
-  transition: transform 0.1s ease-in-out;
+/* Ensure all text aligns properly */
+.box p {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
 }
 
+/* Hover Effect */
+.box:hover {
+  background-color: #ff5500; /* Changes background on hover */
+  color: white;
+  transform: translateY(-5px); /* Adds a floating effect */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Ensure text inside the box stays visible when hovering */
+.box:hover h2, .box:hover p {
+  color: white;
+}
+
+/* Orbit Animation */
+.orbit {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  border: 2px dashed #ccc;
+  border-radius: 50%;
+  animation: spin 10s linear infinite;
+  margin: 0 auto;
+}
+
+/* Orbiting Elements */
+.cards {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 0, 0, 0.529);
+  color: white;
+  text-align: center;
+  line-height: 100px;
+  border-radius: 50%;
+  transform-origin: center;
+  z-index: 5;
+}
+
+/* Image Cards */
+.image-cards {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  background-color: #db3434;
+}
+
+/* Image Text */
+.image-text {
+  font-size: 14px;
+  line-height: 1.4;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Orbit Animation Delay */
+.cards1 { animation: orbit 5s linear infinite; }
+.cards2 { animation: orbit 5s linear infinite; animation-delay: -1.25s; }
+.cards3 { animation: orbit 5s linear infinite; animation-delay: -2.5s; }
+.cards4 { animation: orbit 5s linear infinite; animation-delay: -3.75s; }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+}
 /* Join-us */
 #join-us .content-wrap {
   display: flex;
@@ -415,7 +690,6 @@ body {
   background-color: #00FF26;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: 1px;
   text-transform: capitalize;
   height: 45px;
   width: 300px;
@@ -423,30 +697,10 @@ body {
   border-radius: 50px;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 15px;
-  animation: bottomIn 1s ease-in-out forwards;
-  opacity: 0;
-  animation-delay: 0.7s;
-}
-.join-btn:hover {
-  background-color: #00d11f;
 }
 
-.i1, .i2, .i3, .i4 {
-  animation: bottomIn 1s ease-in-out forwards;
-  opacity: 0;
-}
-.i1 {
-  animation-delay: 0.4s;
-}
-.i2 {
-  animation-delay: 0.45s;
-}
-.i3 {
-  animation-delay: 0.5s;
-}
-.i4 {
-  animation-delay: 0.55s;
+.join-btn:hover {
+  background-color: #00d11f;
 }
 
 /* Footer */
