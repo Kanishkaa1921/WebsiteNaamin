@@ -86,6 +86,7 @@ header {
   width: 0; /* Start hidden */
   animation: typing 7s steps(30, end) forwards, blink 0.8s infinite;
 }
+
 /* Logo Fix */
 .header-logo {
   font-size: 32px;
@@ -119,20 +120,22 @@ nav {
 .nav-items:hover {
   color: rgb(200, 200, 200);
 }
+
 /* Styling for Search Bar */
 #nameSearch {
   padding: 8px;
-  border-radius: 5px;
+  border-radius: 50px;
   border: 1px solid white;
   background: rgba(255, 255, 255, 0.1);
   color: white;
   font-size: 16px;
-  width: 200px;
+  width: 1000px;
 }
 
 #nameSearch::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
+
 /* Underline Animation */
 .nav-items::after {
   content: '';
@@ -177,6 +180,7 @@ nav {
     font-size: 16px;
   }
 }
+
 /* Sidebar Styling */
 .sidebar {
   width: 250px; /* Adjust width as needed */
@@ -207,6 +211,7 @@ nav {
       margin-left: 210px;
   }
 }
+
 .vertical-banner-container {
   width: 80px;  /* Reduced width for a slim banner */
   height: 100vh; /* Full height of the webpage */
@@ -238,11 +243,11 @@ nav {
     text-align: center;
     writing-mode: vertical-rl; /* Rotates text vertically */
 }
+
 @keyframes scrollBanner {
   0% { transform: translateY(100%); }
   100% { transform: translateY(-100%); }
 }
-
 /* About Section */
 .content-grid {
   display: grid;
@@ -318,103 +323,160 @@ nav {
 .action-btn:hover {
   background-color: #00d11f;
 }
-
-/* Style for the service title */
-.service-title {
-  font-size: 2.5rem;
-  text-align: center;
-  margin: 20px 0;
-  font-weight: bold;
-  color: orangered;
-  position: relative;
-}
-
-/* Optional: Add a decorative line below the title */
-.service-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background-color: orangered;
-  margin: 10px auto 0;
-}
-
-/* Optional: Add a gradient or shadow */
-.service-title {
-  background: linear-gradient(90deg, white, white);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Optional: Responsive font size */
-@media (max-width: 768px) {
-  .service-title {
-    font-size: 2rem;
-  }
-}
-
-/* Optional: Add animation */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.service-title {
-  animation: fadeIn 1s ease-out;
-}
-.card-container {
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next line */
-  justify-content: center; /* Center cards horizontally */
-  align-items: center; /* Center cards vertically */
-  gap: 20px; /* Space between cards */
-  padding: 20px; /* Add padding around the container */
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(12px);
 }
 
-/* Individual card styling */
-  .card {
-    width: 200px;
-    height: 250px;
-    background-color: rgba(255, 255, 0, 0.23);
-    border: 1px solid  black;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: black; /* Ensure text color is visible */
-    overflow: hidden; /* Prevent text from overflowing */
-    padding: 10px; /* Add padding to prevent text from touching edges */
-  }
+/* Remove black background */
+.glass-container {
+  width: 100%;
+  max-width: 1300px;
+  padding: 30px;
+  background: none !important;
+  border: none;
+  box-shadow: none;
+}
 
-/* Hover effect for cards */
+/* Main Container - Shift Left */
+.container {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  width: calc(100% - 260px);
+  margin-left: 230px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Grid Card Placement */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 1300px;
+}
+
+/* Card Styles */
+.card {
+  width: 260px;
+  height: 290px;
+  perspective: 1400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Flip Effect */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Flip on Hover */
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back */
+.card-front, .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden; /* Prevents image overflow */
+}
+
+/* Back Side */
+.card-back {
+  transform: rotateY(180deg);
+  background: rgba(255, 100, 100, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image Styling */
+.card-back img {
+  max-width: 90%; /* Ensures image fits within the card */
+  max-height: 90%; /* Prevents overflow */
+  object-fit: contain; /* Keeps aspect ratio */
+  border-radius: 10px; /* Slight rounding */
+}
+
+/* Hover Effect - Slight Scale */
 .card:hover {
-  transform: scale(1.05); /* Slightly increase size on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+  transform: scale(1.05);
 }
 
-/* Fan out animation for each card */
-.card-container:hover .card:nth-child(1) { transform: rotate(-15deg) translateY(-100px); }
-.card-container:hover .card:nth-child(2) { transform: rotate(-10deg) translateY(-90px); }
-.card-container:hover .card:nth-child(3) { transform: rotate(-5deg) translateY(-80px); }
-.card-container:hover .card:nth-child(4) { transform: rotate(0deg) translateY(-70px); }
-.card-container:hover .card:nth-child(5) { transform: rotate(5deg) translateY(-80px); }
-.card-container:hover .card:nth-child(6) { transform: rotate(10deg) translateY(-90px); }
-.card-container:hover .card:nth-child(7) { transform: rotate(15deg) translateY(-100px); }
-.card-container:hover .card:nth-child(8) { transform: rotate(20deg) translateY(-110px); }
-.card-container:hover .card:nth-child(9) { transform: rotate(25deg) translateY(-120px); }
-.card-container:hover .card:nth-child(10) { transform: rotate(30deg) translateY(-130px); }
-.card-container:hover .card:nth-child(11) { transform: rotate(35deg) translateY(-140px); }
+/* Responsive Fixes */
+@media (max-width: 1200px) {
+  .container {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+  }
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(100% - 150px);
+    margin-left: 140px;
+  }
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    margin-left: 0;
+  }
+  .sidebar {
+    width: 100px;
+  }
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 /* Newsletter Container */
 .newsletter-container {
   position: absolute;
