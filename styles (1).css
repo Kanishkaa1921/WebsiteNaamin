@@ -27,7 +27,7 @@ section {
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: url("images/bg11.jpg");
+  background-image: url("bg11.jpg");
   background-size: 200% auto;
   background-position: center;
   background-repeat: repeat;
@@ -84,7 +84,7 @@ header {
   display: inline-block;
   border-right: 3px solid white; /* Cursor effect */
   width: 0; /* Start hidden */
-  animation: typing 7s steps(30, end) forwards, blink 0.8s infinite;
+  animation: typing 10s steps(30, end) forwards, blink 0.9s infinite;
 }
 
 /* Logo Fix */
@@ -96,7 +96,7 @@ header {
 }
 
 .header-logo span {
-  color: rgb(255, 0, 0); /* Stronger red */
+  color: #00FF26; /* Stronger red */
 }
 
 /* Navigation Fixes */
@@ -118,7 +118,7 @@ nav {
 }
 
 .nav-items:hover {
-  color: rgb(200, 200, 200);
+  color: rgba(0, 0, 0, 0.492);
 }
 
 /* Styling for Search Bar */
@@ -129,11 +129,11 @@ nav {
   background: rgba(255, 255, 255, 0.1);
   color: white;
   font-size: 16px;
-  width: 1000px;
+  width: 1200px;
 }
 
 #nameSearch::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #00FF26;
 }
 
 /* Underline Animation */
@@ -155,11 +155,11 @@ nav {
 
 /* Fix for Active Link */
 .active {
-  color: rgb(255, 0, 0);
+  color: #00FF26;
 }
 
 .active:hover::after {
-  background-color: rgb(255, 0, 0);
+  background-color: #00FF26;
 }
 
 /* Responsive Navigation */
@@ -188,7 +188,7 @@ nav {
   position: fixed; /* Fix it to the left */
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.8); /* Dark background */
+  background: rgba(0, 0, 0, 0.414) /* Dark background */
   z-index: 1000; /* Higher than other elements */
   overflow-y: auto; /* Enable scrolling */
   padding: 20px;
@@ -210,43 +210,6 @@ nav {
   .main-content {
       margin-left: 210px;
   }
-}
-
-.vertical-banner-container {
-  width: 80px;  /* Reduced width for a slim banner */
-  height: 100vh; /* Full height of the webpage */
-  overflow: hidden;
-  background-color: rgba(255, 0, 0, 0.6); /* Semi-transparent orange */
-  position: fixed; /* Fixed position for full-page coverage */
-  right: 0; /* Stick to the right side */
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Banner Content */
-.vertical-banner {
-  display: flex;
-  flex-direction: column; /* Stack text vertically */
-  align-items: center;
-  white-space: nowrap;
-  animation: scrollBanner 20s linear infinite;
-}
-
-/* Banner Text */
-.vertical-banner span {
-  font-size: 14px; /* Adjusted for better fit */
-    color: white;
-    font-weight: bold;
-    margin: 15px 0; /* Space between items */
-    text-align: center;
-    writing-mode: vertical-rl; /* Rotates text vertically */
-}
-
-@keyframes scrollBanner {
-  0% { transform: translateY(100%); }
-  100% { transform: translateY(-100%); }
 }
 /* About Section */
 .content-grid {
@@ -323,160 +286,108 @@ nav {
 .action-btn:hover {
   background-color: #00d11f;
 }
+
 /* Sidebar */
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f058; /* Light gray */
+  min-height: 100vh;
+  width: 260px;
   position: fixed;
   left: 0;
   top: 0;
-  width: 220px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.25);
+  padding: 20px;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  transition: all 0.3s ease-in-out;
-  backdrop-filter: blur(12px);
 }
 
-/* Remove black background */
-.glass-container {
-  width: 100%;
-  max-width: 1300px;
-  padding: 30px;
-  background: none !important;
-  border: none;
-  box-shadow: none;
-}
-
-/* Main Container - Shift Left */
-.container {
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  width: calc(100% - 260px);
-  margin-left: 230px;
+/* Main Content */
+.main-content {
+  margin-left: 260px; /* Ensures content is not hidden under the sidebar */
+  flex-grow: 1;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 0.3s ease-in-out;
+  background-color: #fff; /* White background */
+  color: #000; /* Ensure text remains visible */
+  min-height: 100vh;
 }
 
-/* Grid Card Placement */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
+/* Services Container */
+.services-container {
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  max-width: 1300px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-/* Card Styles */
-.card {
-  width: 260px;
-  height: 290px;
-  perspective: 1400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+/* Service Cards */
+.service-card {
+  background-color: black;
+  border-color: #00FF26;
+  border-radius: 16px;
+  border: 2px solid #00FF26; /* White border */
+  border-radius: 10px; /* Optional: Rounded corners */
+  padding: 10px; /* Space inside the border */
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  width: 320px;
+  text-align: center;
+  cursor: pointer;
 }
 
-/* Flip Effect */
-.card-inner {
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card img {
   width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease-in-out;
+  height: 180px;
+  object-fit: cover;
 }
 
-/* Flip on Hover */
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Front & Back */
-.card-front, .card-back {
+/* Services List */
+.services-list {
+  background: #333333b7;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px #333;
+  max-width: 600px;
   width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  font-size: 16px;
-  font-weight: bold;
+  margin: 20px auto; /* Centers the list */
+}
+
+/* Services List Styling */
+.services-list h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #00FF26;
+  text-align: center;
+}
+
+.services-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.services-list li {
+  padding: 8px 0;
+  font-size: 14px;
   color: white;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease-in-out;
-  overflow: hidden; /* Prevents image overflow */
+  border-bottom: 1px solid #ddd;
 }
 
-/* Back Side */
-.card-back {
-  transform: rotateY(180deg);
-  background: rgba(255, 100, 100, 0.35);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.services-list li:last-child {
+  border-bottom: none;
 }
 
-/* Image Styling */
-.card-back img {
-  max-width: 90%; /* Ensures image fits within the card */
-  max-height: 90%; /* Prevents overflow */
-  object-fit: contain; /* Keeps aspect ratio */
-  border-radius: 10px; /* Slight rounding */
+/* Fix for Broken Images */
+img:not([src]) {
+  display: none;
 }
 
-/* Hover Effect - Slight Scale */
-.card:hover {
-  transform: scale(1.05);
-}
-
-/* Responsive Fixes */
-@media (max-width: 1200px) {
-  .container {
-    width: calc(100% - 200px);
-    margin-left: 200px;
-  }
-  .card-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .container {
-    width: calc(100% - 150px);
-    margin-left: 140px;
-  }
-  .card-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    width: 100%;
-    margin-left: 0;
-  }
-  .sidebar {
-    width: 100px;
-  }
-  .card-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
 /* Newsletter Container */
 .newsletter-container {
   position: absolute;
@@ -631,7 +542,7 @@ p {
 
 /* Hover Effect */
 .box:hover {
-  background-color: #ff5500; /* Changes background on hover */
+  background-color: rgba(36, 128, 0, 0.718); /* Changes background on hover */
   color: white;
   transform: translateY(-5px); /* Adds a floating effect */
   transition: all 0.3s ease-in-out;
@@ -660,7 +571,7 @@ p {
   left: 50%;
   width: 100px;
   height: 100px;
-  background-color: rgba(255, 0, 0, 0.529);
+  background-color: rgba(43, 255, 0, 0.529);
   color: white;
   text-align: center;
   line-height: 100px;
